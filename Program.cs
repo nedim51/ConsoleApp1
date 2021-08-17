@@ -2,7 +2,8 @@
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
- 
+using System.Text.RegularExpressions;
+
 namespace HelloApp
 {
     class Property 
@@ -39,10 +40,19 @@ namespace HelloApp
             tom["Age"] = 50;
             Console.WriteLine(tom["Age"]);
 
-            string json = JsonSerializer.Serialize<Person>(tom);
+            //string json = JsonSerializer.Serialize<Person>(tom);
             //Console.WriteLine(json);
-            Person restoredPerson = JsonSerializer.Deserialize<Person>(json);
+            //Person restoredPerson = JsonSerializer.Deserialize<Person>(json);
             //Console.WriteLine($"Name: {restoredPerson.Name}  Age: {restoredPerson.Age}");
+
+            string str = "{Simpheropol.asdasd}, {Fiodosiya} {Saki.}";
+            Regex rg = new Regex("{[a-zA-Z]+.[a-zA-Z]+}");
+            Regex r = new Regex("[a-zA-Z]+");
+            foreach (var item in rg.Matches(str))
+            {
+                Console.WriteLine(r.Match(item.ToString()).Value);
+            }
+            
         }
     }
 }
